@@ -102,6 +102,89 @@ http://localhost/tirtopesal/src/index.php
 
 ---
 
+## 🗃️ Struktur Database & Relasi Tabel
+Database untuk aplikasi TirtoPesal Travel dirancang untuk mendukung sistem pemesanan travel berbasis web. Berikut ini adalah penjelasan masing-masing tabel dan relasinya:
+```bash
+📄 1. admin
+Menyimpan data akun admin yang memiliki akses untuk mengelola sistem.
+id_admin (PK) – ID unik admin
+username – Nama pengguna admin
+password – Password terenkripsi
+📄 2. pelanggan
+Menyimpan data pelanggan yang melakukan pemesanan travel.
+id_pelanggan (PK) – ID unik pelanggan
+nama_pelanggan – Nama lengkap pelanggan
+no_hp – Nomor HP
+email – Alamat email
+password – Password untuk login pelanggan
+📄 3. mobil
+Berisi informasi kendaraan yang tersedia.
+id_mobil (PK) – ID mobil
+nama_mobil – Nama/merk mobil
+no_polisi – Nomor polisi kendaraan
+kapasitas – Jumlah kursi
+harga_mobil – Harga dasar mobil
+📄 4. tujuan
+Berisi daftar rute atau tujuan perjalanan.
+id_tujuan (PK) – ID tujuan
+lokasi_awal – Titik keberangkatan
+lokasi_akhir – Titik tujuan akhir
+📄 5. pemesanan
+Mencatat data transaksi pemesanan travel oleh pelanggan.
+id_pemesanan (PK)
+id_pelanggan (FK) → pelanggan
+id_mobil (FK) → mobil
+id_tujuan (FK) → tujuan
+tanggal_pemesanan – Tanggal dibuatnya pesanan
+tanggal_berangkat – Tanggal keberangkatan
+metode_pembayaran – cash / transfer / QRIS
+status – Menunggu, Lunas, atau Dibatalkan
+📄 6. pembayaran
+Menyimpan bukti pembayaran dari pelanggan jika menggunakan metode non-cash.
+id_pembayaran (PK)
+id_pemesanan (FK) → pemesanan
+bukti_pembayaran – Nama file gambar bukti
+status_verifikasi – Terverifikasi / Belum
+📄 7. ulasan
+Mencatat ulasan atau testimoni dari pelanggan setelah menggunakan layanan.
+id_ulasan (PK)
+id_pelanggan (FK) → pelanggan
+isi_ulasan – Isi komentar
+tanggal_ulasan – Tanggal ulasan dibuat
+📄 8. aktivitas_admin
+Log aktivitas seluruh pengguna sistem, baik admin maupun pelanggan.
+id_aktivitas (PK)
+id_admin (nullable, FK) → admin
+id_pelanggan (nullable, FK) → pelanggan
+peran – admin / pelanggan
+aktivitas – Deskripsi kegiatan (Login, Tambah Data, Edit, Hapus, dsb.)
+waktu – Timestamp aktivitas
+📄 9. setting
+Konfigurasi aplikasi seperti nama perusahaan, alamat, dan info kontak.
+id_setting (PK)
+nama_aplikasi – Nama sistem
+deskripsi – Informasi singkat
+alamat, telepon, email, dll.
+```
+---
+## 🔁 Relasi Antar Tabel
+```bash
+Satu pelanggan bisa memiliki banyak pemesanan (1:N)
+
+Satu mobil bisa digunakan di banyak pemesanan (1:N)
+
+Satu tujuan bisa digunakan di banyak pemesanan (1:N)
+
+Satu pemesanan bisa memiliki satu pembayaran
+
+Satu pelanggan bisa menulis banyak ulasan
+
+Tabel aktivitas_admin mencatat log semua tindakan baik oleh admin maupun pelanggan
+```
+
+---
+
+
 ## 🌐 Link Aplikasi & Dokumentasi Video
 - 🔗 Demo Aplikasi (Hosting): https://tirtopesaltravel.my.id
 - 🎥 Video Demo (YouTube): https://youtu.be/videoku
