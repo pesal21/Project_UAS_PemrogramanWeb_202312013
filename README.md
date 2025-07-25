@@ -187,7 +187,7 @@ Tabel aktivitas_admin mencatat log semua tindakan baik oleh admin maupun pelangg
 
 ## 🌐 Link Aplikasi & Dokumentasi Video
 - 🔗 Demo Aplikasi (Hosting): https://tirtopesaltravel.my.id
-- 🎥 Video Demo (YouTube): https://youtu.be/videoku
+- 🎥 Video Demo (YouTube): https://youtu.be/JQHtHcfvWw8
 
 ---
 
